@@ -115,23 +115,6 @@ export class App extends Component {
       });
     });
 
-    function sendmail() {
-      let subject = $("#subject").val();
-      let body = $("#message").val();
-      let name = $("#name").val();
-
-      console.log(name, body, subject);
-
-      body = `${body}<br>Regards<br>` + name;
-
-      setTimeout(
-        window.open(
-          `mailto:smhimran@gmail.com?subject=${subject}&body=${body}`
-        ),
-        100000
-      );
-    }
-
     $(".menu-button").click(function () {
       $(".nav").toggleClass("responsive");
     });
