@@ -1,6 +1,25 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class Contests extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      contests: [],
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get(`http://localhost:8000/api/contests/`)
+      .then((res) => {
+        const contests = res.data;
+        this.setState({ contests });
+      })
+      .catch((error) => console.log(error));
+  }
+
   render() {
     return (
       <div>
@@ -14,7 +33,19 @@ class Contests extends Component {
               </tr>
             </thead>
             <tbody>
-              <tr>
+              {this.state.contests.map((contest, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{contest.title}</td>
+                    <td>{contest.team ? contest.team : "N/A"}</td>
+                    <td>
+                      {contest.position.slice(0, -2)}
+                      <sup>{contest.position.slice(-2)}</sup>
+                    </td>
+                  </tr>
+                );
+              })}
+              {/* <tr>
                 <td>DIU Take-off Programming Contest, Spring 2018</td>
                 <td>N/A</td>
                 <td>
@@ -48,7 +79,7 @@ class Contests extends Component {
                 <td>
                   90<sup>th</sup>
                 </td>
-              </tr>
+              </tr> */}
             </tbody>
           </table>
         </div>

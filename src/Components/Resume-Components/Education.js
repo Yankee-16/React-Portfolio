@@ -37,7 +37,13 @@ class Education extends Component {
               {this.state.educations.map((education, index) => {
                 console.log(education.degree);
                 return (
-                  <li className="resume-detail-li-first" key={index}>
+                  <li
+                    className={
+                      index === 0
+                        ? "resume-detail-li-first"
+                        : "resume-detail-li"
+                    }
+                    key={index}>
                     <div>
                       <SingleEducation education={education} />
                     </div>

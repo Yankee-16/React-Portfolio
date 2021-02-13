@@ -1,39 +1,39 @@
 import React, { Component } from "react";
+import SingleExpertise from "./SingleExpertise";
+import axios from "axios";
 
 class SkillList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      expertises: [],
+    };
+  }
+
+  componentDidMount() {
+    axios.defaults.withCredentials = true;
+    axios
+      .get(`http://localhost:8000/api/expertises/`)
+      .then((res) => {
+        const expertises = res.data;
+        this.setState({ expertises });
+      })
+      .catch((error) => console.log(error));
+  }
+
   render() {
     return (
       <div>
         <div className="bars">
           <ul className="skills">
-            <li>
-              <span className="bar-expand cpp"></span>
-              <em>C/C++</em>
-            </li>
-            <li>
-              <span className="bar-expand python"></span>
-              <em>Python</em>
-            </li>
-            <li>
-              <span className="bar-expand problem-solving"></span>
-              <em>Problem Solving</em>
-            </li>
-            <li>
-              <span className="bar-expand django"></span>
-              <em>Django</em>
-            </li>
-            <li>
-              <span className="bar-expand html5"></span>
-              <em>HTML5</em>
-            </li>
-            <li>
-              <span className="bar-expand css"></span>
-              <em>CSS</em>
-            </li>
-            <li>
-              <span className="bar-expand jquery"></span>
-              <em>jQuery</em>
-            </li>
+            {this.state.expertises.map((expertise, index) => {
+              return (
+                <li key={index}>
+                  <SingleExpertise expertise={expertise} />
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>

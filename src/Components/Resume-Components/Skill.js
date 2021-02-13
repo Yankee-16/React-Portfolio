@@ -1,8 +1,29 @@
 import React, { Component } from "react";
 import Contests from "./Contests";
 import SkillList from "./SkillList";
+import SingleSkill from "./SingleSkill";
+import axios from "axios";
 
 class Skill extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      skills: [],
+    };
+  }
+
+  componentDidMount() {
+    axios.defaults.withCredentials = true;
+    axios
+      .get(`http://localhost:8000/api/skills/`)
+      .then((res) => {
+        const skills = res.data;
+        this.setState({ skills });
+      })
+      .catch((error) => console.log(error));
+  }
+
   render() {
     return (
       <div>
@@ -40,24 +61,13 @@ class Skill extends Component {
                 </div>
               </li>
 
-              <li>
-                <div className="resume-detail-li">
-                  <h3 className="work-place">Web Development</h3>
-                  <h4 className="work-designation">
-                    Python and Django <span>•</span>
-                    <em className="date"> April 2020 - Present</em>
-                  </h4>
-                  <div className="work-details">
-                    <p>
-                      I started web development as a hobby. I learned Python and
-                      Django and worked on a few projects. Then I started to
-                      learn Django REST Framework to work on a project that
-                      needed REST API. Now I'm still working on DRF and learning
-                      other technologies such as React.
-                    </p>
-                  </div>
-                </div>
-              </li>
+              {this.state.skills.map((skill, index) => {
+                return (
+                  <li key={index}>
+                    <SingleSkill skill={skill} />
+                  </li>
+                );
+              })}
             </ul>
             <SkillList />
           </div>
