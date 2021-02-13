@@ -3,7 +3,7 @@ import "./style.css";
 
 export default function Navbar() {
   const onclick = () => {
-    console.log("Clicked");
+    console.log("Navbar Toggle!");
   };
   return (
     <div>
