@@ -1,6 +1,27 @@
 import React, { Component } from "react";
+import SingleEducation from "./SingleEducation";
+import axios from "axios";
 
 class Education extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      educations: [],
+    };
+  }
+
+  componentDidMount() {
+    axios.defaults.withCredentials = true;
+    axios
+      .get(`http://localhost:8000/api/educations/`)
+      .then((res) => {
+        const educations = res.data;
+        this.setState({ educations });
+      })
+      .catch((error) => console.log(error));
+  }
+
   render() {
     return (
       <div>
@@ -13,26 +34,16 @@ class Education extends Component {
 
           <div className="resume-detail">
             <ul>
-              <li className="resume-detail-li-first">
-                <div>
-                  <h3 className="work-place">
-                    Daffodil International University
-                  </h3>
-                  <h4 className="work-designation">
-                    B.Sc in CSE <span>•</span>
-                    <em className="date"> January 2018 - Present</em>
-                  </h4>
-                  <div className="work-details">
-                    <p>
-                      I've been studying B.Sc in CSE here for more than 3 years.
-                      I'm also engaged in some extracurricular activities such
-                      as organizing programming contests for freshers, training
-                      juniors in DIU ACM, participate in programming contests,
-                      etc.
-                    </p>
-                  </div>
-                </div>
-              </li>
+              {this.state.educations.map((education, index) => {
+                console.log(education.degree);
+                return (
+                  <li className="resume-detail-li-first" key={index}>
+                    <div>
+                      <SingleEducation education={education} />
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
