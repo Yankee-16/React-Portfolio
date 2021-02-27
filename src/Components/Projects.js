@@ -14,7 +14,7 @@ export class Projects extends Component {
   componentDidMount() {
     axios.defaults.withCredentials = true;
     axios
-      .get(`http://localhost:8000/api/projects/`)
+      .get(`/api/projects/`)
       .then((res) => {
         const projects = res.data;
         this.setState({ projects });

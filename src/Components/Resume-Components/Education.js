@@ -14,7 +14,7 @@ class Education extends Component {
   componentDidMount() {
     axios.defaults.withCredentials = true;
     axios
-      .get(`http://localhost:8000/api/educations/`)
+      .get(`/api/educations/`)
       .then((res) => {
         const educations = res.data;
         this.setState({ educations });
@@ -35,7 +35,6 @@ class Education extends Component {
           <div className="resume-detail">
             <ul>
               {this.state.educations.map((education, index) => {
-                console.log(education.degree);
                 return (
                   <li
                     className={

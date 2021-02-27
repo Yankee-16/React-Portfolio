@@ -8,7 +8,6 @@ export class App extends Component {
   componentDidMount() {
     $(document).ready(function () {
       let modified = document.lastModified;
-      console.log(modified);
       $("#modification").html(`Last Modified: ${modified}`);
 
       $(window).scroll(function () {

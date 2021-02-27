@@ -16,7 +16,7 @@ class Skill extends Component {
   componentDidMount() {
     axios.defaults.withCredentials = true;
     axios
-      .get(`http://localhost:8000/api/skills/`)
+      .get(`/api/skills/`)
       .then((res) => {
         const skills = res.data;
         this.setState({ skills });

@@ -13,7 +13,7 @@ class Experience extends Component {
 
   componentDidMount() {
     axios
-      .get(`http://localhost:8000/api/experiences/`)
+      .get(`/api/experiences/`)
       .then((res) => {
         const experiences = res.data;
 

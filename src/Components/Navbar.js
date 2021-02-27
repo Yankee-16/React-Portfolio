@@ -5,6 +5,10 @@ export default function Navbar() {
   const onclick = () => {
     console.log("Navbar Toggle!");
   };
+
+  let url = window.location.host;
+
+  url += "/blog/";
   return (
     <div>
       <nav id="nav-wrap">
@@ -27,9 +31,7 @@ export default function Navbar() {
             <a href="#projects">Projects</a>
           </li>
           <li>
-            <a href="https://smhimran.herokuapp.com/blog/" target="blank">
-              Blog
-            </a>
+            <a href={url}>Blog</a>
           </li>
           <li id="contact-link">
             <a href="#contact">Contact</a>
