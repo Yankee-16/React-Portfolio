@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function BlogItem({ post }) {
-  const link = `/blog/article/#/${post.slug}`;
+  const link = `/blog/${post.slug}`;
   return (
     <div>
       <Link to={link} className="no-underline  flex flex-row">

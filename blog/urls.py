@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path, re_path, include
 from rest_framework import routers
 from . import views
 from django.views.generic import TemplateView
@@ -12,8 +12,9 @@ router.register(r'all', views.PostViewset)
 # router.register(r'<str:slug>', views.SinglePostView)
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='build/index.html')),
-    path('article/', TemplateView.as_view(template_name='build/index.html')),
+    # path('article/', TemplateView.as_view(template_name='build/index.html')),
     path('api/', include(router.urls)),
+    re_path(r'^.*/$', TemplateView.as_view(template_name='build/index.html')),
+    path('', TemplateView.as_view(template_name='build/index.html')),
 
 ] + staticfiles_urlpatterns()

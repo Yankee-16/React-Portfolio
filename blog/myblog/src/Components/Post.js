@@ -36,9 +36,9 @@ export class Post extends Component {
 
     console.log(url);
 
-    let dir = url.slice(36, url.length);
+    let dir = url.slice(27, url.length);
 
-    dir = "/article/api" + dir + "/";
+    dir = "/article/api/" + dir;
 
     console.log(dir);
 
